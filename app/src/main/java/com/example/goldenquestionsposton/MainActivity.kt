@@ -54,7 +54,7 @@ fun uiGoldenQuestions(){
                 .fillMaxWidth()
                 .height(150.dp)
         ) {
-            androidx.compose.material.Surface(color = colorResource(id = R.color.brown)) {
+            Surface(color = colorResource(id = R.color.brown)) {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     textQuestion()
                     Image(
