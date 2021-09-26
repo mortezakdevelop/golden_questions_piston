@@ -18,6 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 
 class MainActivity : ComponentActivity() {
 
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CallAlertDialog()
+           More()
         }
     }
 }
@@ -39,7 +40,6 @@ fun CallAlertDialog() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        ShowAlertDialog(isDialogOpen)
         uiGoldenQuestions()
 
 
@@ -54,7 +54,8 @@ fun uiGoldenQuestions(){
                 .fillMaxWidth()
                 .height(150.dp)
         ) {
-            Surface(color = colorResource(id = R.color.brown)) {
+            // add  color brown in surface
+            Surface() {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     textQuestion()
                     Image(
