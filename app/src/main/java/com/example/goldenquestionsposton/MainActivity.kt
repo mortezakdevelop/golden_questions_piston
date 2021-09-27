@@ -91,8 +91,7 @@ fun uiGoldenQuestions(){
 @Preview(showBackground = true)
 @Composable
 fun DefaultGoldenQuestions() {
-
-
+    More()
 }
 
 
