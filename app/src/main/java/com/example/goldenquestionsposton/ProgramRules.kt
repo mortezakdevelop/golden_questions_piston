@@ -15,8 +15,7 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun resourceDialog() {
-
+fun programRules(){
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -27,7 +26,7 @@ fun resourceDialog() {
             color = colorResource(
                 id = R.color.courcesBlue
             ),
-            text = "منابع"
+            text = "قوانین برنامه"
         )
         Spacer(
             modifier = Modifier
@@ -39,8 +38,8 @@ fun resourceDialog() {
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
             Text(
                 modifier = Modifier.padding(10.dp),
-               color =  colorResource(id = R.color.courcesBlue),
-                text = stringResource(id = R.string.manabe_txt)
+                color =  colorResource(id = R.color.courcesBlue),
+                text = stringResource(id = R.string.ProgramRulesBody)
             )
         }
     }
