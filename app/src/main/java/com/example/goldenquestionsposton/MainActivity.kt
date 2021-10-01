@@ -52,7 +52,8 @@ fun uiGoldenQuestions(){
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(150.dp)
+                .height(150.dp),
+            backgroundColor = colorResource(id = R.color.golden)
         ) {
             // add  color brown in surface
             Surface() {
@@ -82,7 +83,8 @@ fun uiGoldenQuestions(){
             textAlign = TextAlign.Center, //style = LocalTextStyle.current.copy(textAlign = TextAlign.Center),
             fontSize = 30.sp,
             color = Color.White,
-            text = "سوالات طلایی"
+            text = "سوالات طلایی",
+
         )
     }
 
@@ -91,7 +93,7 @@ fun uiGoldenQuestions(){
 @Preview(showBackground = true)
 @Composable
 fun DefaultGoldenQuestions() {
-    More()
+    question()
 }
 
 
