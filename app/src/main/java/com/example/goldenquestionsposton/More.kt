@@ -1,46 +1,33 @@
-package com.example.goldenquestionsposton
+package com.example.myapplication
 
-
-import android.content.Context
 import android.content.Intent
-import android.graphics.Path
-import android.view.Gravity
 import android.widget.Toast
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.gestures.scrollable
-import androidx.compose.foundation.interaction.DragInteraction
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import androidx.core.content.ContextCompat.startActivity
-import androidx.navigation.NavController
+import com.example.goldenquestionsposton.R
 
 @Composable
 
-fun More()
-{
+fun More() {
     val columnScroll = rememberScrollState()
     val context = LocalContext.current
     Column(
@@ -94,7 +81,7 @@ fun More()
                 IconButton(
                     modifier = Modifier.background(colorResource(id = R.color.courcesBlue)),
                     onClick = {
-                        Toast.makeText(context,"به زودی فعال می شه :)",Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "به زودی فعال می شه :)", Toast.LENGTH_LONG).show()
                     }) {
                     Box() {
                         Row(
@@ -155,27 +142,242 @@ fun More()
         }
 
         Column() {
-            moreCard(
-                icon = R.drawable.ic_person,
-                text = R.string.USerProfile_txt,
-                color = R.color.courcesBlue
-            )
-            moreCard(
-                icon = R.drawable.ic_manabe,
-                text = R.string.ResourceTitle_txt,
-                color = R.color.courcesBlue
-            )
-            moreCard(
-                icon = R.drawable.ic_add_member,
-                text = R.string.InviteFriendTitle_txt,
-                color = R.color.courcesBlue
-            )
-            moreCard(
-                icon = R.drawable.ic_call,
-                text = R.string.CallUsTitle_txt,
-                color = R.color.courcesBlue
-            )
-            moreCard(icon = R.drawable.ic_info, text = R.string.about_us, color = R.color.golden)
+            Card(
+                modifier = Modifier
+                    .padding(5.dp)
+                    .fillMaxWidth()
+            ) {
+
+                IconButton(modifier = Modifier.background(colorResource(id = R.color.white_deep)),
+                    onClick = {
+
+                    }) {
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp), contentAlignment = Alignment.CenterEnd
+                    ) {
+                        Row(modifier = Modifier.padding(10.dp)) {
+                            Text(
+                                text = stringResource(id = R.string.USerProfile_txt),
+                                color = colorResource(id = R.color.courcesBlue),
+                            )
+                            Icon(
+                                modifier = Modifier
+                                    .padding(start = 15.dp)
+                                    .background(
+                                        colorResource(id = R.color.courcesBlue),
+                                        shape = RoundedCornerShape(5.dp)
+                                    ),
+                                imageVector = ImageVector.vectorResource(id = R.drawable.ic_person),
+                                contentDescription = "",
+                                tint = Color.Unspecified
+                            )
+                        }
+                    }
+                }
+            }
+
+            // manabe icon button card
+            var showDialog by remember {
+                mutableStateOf(false)
+            }
+            if(showDialog == true) {
+
+                // for close dialog
+                Dialog(onDismissRequest = { showDialog = false}) {
+                    Card() {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally,modifier = Modifier
+                            .fillMaxWidth()
+                        ) {
+                            Text(modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(end = 10.dp).height(40.dp),text = stringResource(id = R.string.ResourceTitle_txt),textAlign = TextAlign.End,color = colorResource(
+                                id = R.color.textColor_deep_blue
+                            ),fontSize = 15.sp)
+                            Spacer(modifier = Modifier
+                                .fillMaxWidth(0.9f)
+                                .height(1.dp)
+                                .background(
+                                    colorResource(id = R.color.gray)
+                                ))
+                            Text(modifier = Modifier
+                                .fillMaxWidth(0.85f).padding(10.dp)
+                                ,text = stringResource(id = R.string.manabe_txt),
+                                textAlign = TextAlign.End,color = colorResource(
+                                    id = R.color.textColor_deep_blue
+                                ))
+                        }
+                    }
+
+                }
+            }
+            Card(
+                modifier = Modifier
+                    .padding(5.dp)
+                    .fillMaxWidth()
+            ) {
+
+                IconButton(modifier = Modifier.background(colorResource(id = R.color.white_deep)),
+                    onClick = {
+                        showDialog = true
+                    }) {
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp), contentAlignment = Alignment.CenterEnd
+                    ) {
+                        Row(modifier = Modifier.padding(10.dp)) {
+                            Text(
+                                text = stringResource(id = R.string.ResourceTitle_txt),
+                                color = colorResource(id = R.color.courcesBlue),
+                            )
+                            Icon(
+                                modifier = Modifier
+                                    .padding(start = 15.dp)
+                                    .background(
+                                        colorResource(id = R.color.courcesBlue),
+                                        shape = RoundedCornerShape(5.dp)
+                                    ),
+                                imageVector = ImageVector.vectorResource(id = R.drawable.ic_manabe),
+                                contentDescription = "",
+                                tint = Color.Unspecified
+                            )
+                        }
+                    }
+                }
+            }
+
+            // add member card
+
+            Card(
+                modifier = Modifier
+                    .padding(5.dp)
+                    .fillMaxWidth()
+            ) {
+
+
+                IconButton(modifier = Modifier.background(colorResource(id = R.color.white_deep)),
+                    onClick = {
+                        // implicit intent for social media for invite friends button
+                        val shareBody = "http://pistoon.iranswan.ir/"
+                        val sharingIntent = Intent(Intent.ACTION_SEND)
+                        sharingIntent.type = "text/plain"
+                        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "دانلود اپلیکیشن آموزشی آیین نامه راهنمایی رانندگی")
+                        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody)
+                        context.startActivity(Intent.createChooser(sharingIntent, "انتخاب شبکه اجتماعی..."))
+
+                    }) {
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp), contentAlignment = Alignment.CenterEnd
+                    ) {
+                        Row(modifier = Modifier.padding(10.dp)) {
+                            Text(
+                                text = stringResource(id = R.string.InviteFriendTitle_txt),
+                                color = colorResource(id = R.color.courcesBlue),
+                            )
+                            Icon(
+                                modifier = Modifier
+                                    .padding(start = 15.dp)
+                                    .background(
+                                        colorResource(id = R.color.courcesBlue),
+                                        shape = RoundedCornerShape(5.dp)
+                                    ),
+                                imageVector = ImageVector.vectorResource(id = R.drawable.ic_add_member),
+                                contentDescription = "",
+                                tint = Color.Unspecified
+                            )
+                        }
+                    }
+                }
+            }
+
+            //add cell us card
+            Card(
+                modifier = Modifier
+                    .padding(5.dp)
+                    .fillMaxWidth()
+            ) {
+
+
+                IconButton(modifier = Modifier.background(colorResource(id = R.color.white_deep)),
+                    onClick = {
+                        // send email implicit intent for cell us icon button
+                        val i = Intent(Intent.ACTION_SEND)
+                        i.type = "message/rfc822"
+                        i.putExtra(Intent.EXTRA_EMAIL, arrayOf("info@iranswan.ir"))
+                        context.startActivity(Intent.createChooser(i, "ارسال ایمیل..."))
+
+                    }) {
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp), contentAlignment = Alignment.CenterEnd
+                    ) {
+                        Row(modifier = Modifier.padding(10.dp)) {
+                            Text(
+                                text = stringResource(id = R.string.CallUsTitle_txt),
+                                color = colorResource(id = R.color.courcesBlue),
+                            )
+                            Icon(
+                                modifier = Modifier
+                                    .padding(start = 15.dp)
+                                    .background(
+                                        colorResource(id = R.color.courcesBlue),
+                                        shape = RoundedCornerShape(5.dp)
+                                    ),
+                                imageVector = ImageVector.vectorResource(id = R.drawable.ic_call),
+                                contentDescription = "",
+                                tint = Color.Unspecified
+                            )
+                        }
+                    }
+                }
+            }
+
+            // add about us card
+            Card(
+                modifier = Modifier
+                    .padding(5.dp)
+                    .fillMaxWidth()
+            ) {
+
+                IconButton(modifier = Modifier.background(colorResource(id = R.color.white_deep)),
+                    onClick = {
+
+                    }) {
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(50.dp), contentAlignment = Alignment.CenterEnd
+                    ) {
+                        Row(modifier = Modifier.padding(10.dp)) {
+                            Text(
+                                text = stringResource(id = R.string.about_us),
+                                color = colorResource(id = R.color.courcesBlue),
+                            )
+                            Icon(
+                                modifier = Modifier
+                                    .padding(start = 15.dp)
+                                    .background(
+                                        colorResource(id = R.color.golden),
+                                        shape = RoundedCornerShape(5.dp)
+                                    ),
+                                imageVector = ImageVector.vectorResource(id = R.drawable.ic_info),
+                                contentDescription = "",
+                                tint = Color.Unspecified
+                            )
+                        }
+                    }
+                }
+            }
         }
 
 
@@ -195,7 +397,7 @@ fun subscriptionCard(
     paddingBottomPriceButton: Dp,
 
 
-) {
+    ) {
     Card(
         modifier = Modifier
             .fillMaxWidth(size)
@@ -204,107 +406,51 @@ fun subscriptionCard(
         shape = RoundedCornerShape(10.dp)
     ) {
 
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(paddingAllPrice),
-                    text = price,
-                    color = color,
-                    textAlign = TextAlign.Center,
-                    fontSize = 20.sp
-                )
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = paddingBottomPrice,top = 10.dp),
-                    text = title,
-                    color = color,
-                    textAlign = TextAlign.Center
-                )
-                Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(bottom = paddingBottomPriceButton,top = 15.dp),
-                    text = body,
-                    color = colorResource(id = R.color.gray),
-                    textAlign = TextAlign.Center,
-                    fontSize = 10.sp
-                )
-                Button(
-                    modifier = Modifier
-                        .background(
-                            shape = RoundedCornerShape(10.dp),
-                            color = color
-                        )
-                        .fillMaxWidth(0.8F),
-                    onClick = { /*TODO*/ },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = color)
-
-                ) {
-                    Text(text = stringResource(id = R.string.txt_buy))
-                }
-            }
-        }
-
-    }
-
-@Composable
-fun moreCard(icon: Int, text: Int, color: Int) {
-    Card(
-        modifier = Modifier
-            .padding(5.dp)
-            .fillMaxWidth()
-    ) {
-
-        IconButton(modifier = Modifier.background(colorResource(id = R.color.white_deep)),
-            onClick = {
-
-                // implicit intent for more activity
-//                val invite = R.string.messageContactUs +  R.string.url
-//                val intent = Intent()
-//                intent.action = Intent.ACTION_SEND
-//                intent.putExtra("invite message",invite)
-//                intent.type = "txt/plain"
-//                startActivity(context,intent)
-
-
-            }) {
-
-            Box(
+            Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp), contentAlignment = Alignment.CenterEnd
+                    .padding(paddingAllPrice),
+                text = price,
+                color = color,
+                textAlign = TextAlign.Center,
+                fontSize = 20.sp
+            )
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = paddingBottomPrice, top = 10.dp),
+                text = title,
+                color = color,
+                textAlign = TextAlign.Center
+            )
+            Text(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = paddingBottomPriceButton, top = 15.dp),
+                text = body,
+                color = colorResource(id = R.color.gray),
+                textAlign = TextAlign.Center,
+                fontSize = 10.sp
+            )
+            Button(
+                modifier = Modifier
+                    .background(
+                        shape = RoundedCornerShape(10.dp),
+                        color = color
+                    )
+                    .fillMaxWidth(0.8F),
+                onClick = { /*TODO*/ },
+                colors = ButtonDefaults.buttonColors(backgroundColor = color)
+
             ) {
-                Row(modifier = Modifier.padding(10.dp)) {
-                    Text(
-                        text = stringResource(id = text),
-                        color = colorResource(id = R.color.courcesBlue),
-                    )
-                    Icon(
-                        modifier = Modifier
-                            .padding(start = 15.dp)
-                            .background(
-                                colorResource(id = color),
-                                shape = RoundedCornerShape(5.dp)
-                            ),
-                        imageVector = ImageVector.vectorResource(id = icon),
-                        contentDescription = "",
-                        tint = Color.Unspecified
-                    )
-                }
-
+                Text(text = stringResource(id = R.string.txt_buy))
             }
-
-
         }
     }
-
 }
-
-
 
